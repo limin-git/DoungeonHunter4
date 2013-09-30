@@ -8,6 +8,11 @@
 #include <cmath>
 
 
+
+
+
+
+
 class DungeonHunter
 {
 public:
@@ -25,6 +30,8 @@ public:
         m_min_jie = 0;
 
         m_shang_hai_jia_cheng = 0;
+
+        m_adjustment = 0; //目前尚不清楚，究竟差距在哪里
     }
 
 
@@ -32,7 +39,6 @@ public:
         : m_feng_bao( feng_bao ),
           m_min_jie( ming_jie )
     {
-        
     }
 
     void set_feng_bao( size_t feng_bao )
@@ -50,9 +56,25 @@ public:
         m_shang_hai_jia_cheng = 0.4;
     }
 
+    void set_ying_yan()
+    {
+        m_bao_ji_ji_lu += 1.0;
+        m_bao_ji_jiang_li += 0.3;
+
+        double shang_hai = std::ceil( ( m_shang_hai_min + m_shang_hai_max ) / 2.0 );
+        m_adjustment = -( shang_hai * 0.1 + m_feng_bao * 0.24 * shang_hai * 0.1 );
+
+        // 鹰眼技能
+        // - 平均伤害的 10%
+        // - 平均伤害 * 风暴符咒个数 * 风暴符咒伤害 * 10% 
+    }
+
+    void set_ring( size_t bao_ji_ji_lu, size_t shang_hai )
+    {
+    }
 
 
-
+#if 0
     double miao_shang()
     {
         double m_shang_hai = std::ceil( ( m_shang_hai_min + m_shang_hai_max ) / 2.0 );
@@ -65,6 +87,7 @@ public:
 
         return miang_shang;
     }
+#endif
 
 
     double miao_shang_with_fu_shou()
@@ -84,7 +107,7 @@ public:
 
         double miang_shang = shang_hai * m_gong_ji_su_du;
 
-        return miang_shang * ( 1 + m_feng_bao * 0.24 + m_shang_hai_jia_cheng );
+        return miang_shang * ( 1 + m_feng_bao * 0.24 + m_shang_hai_jia_cheng ) + m_adjustment;
     }
 
 private:
@@ -98,6 +121,8 @@ private:
     // 技能
     double m_shang_hai_jia_cheng;
 
+    double m_adjustment;
+
     // 符咒
 
     size_t m_feng_bao;
@@ -105,23 +130,7 @@ private:
 };
 
 
-
-// 伤害: 101107 = 100892 + 214
-// 攻击速度: 0%
-// 暴击几率: 5%
-// 暴击奖励: 50%
-
-
-
-//227424.48
-//408254.68
-//162446
-//72484 - 85999 avg= 79241.5
-
-//158483
-
-
-#if 0
+#if 1
 double caculate_max_dps()
 {
     double max_dps = 0;
@@ -135,11 +144,13 @@ double caculate_max_dps()
     double bao_ji_ji_lu = 1.05;
     double bo_ji_jiang_li = 0.8;
 
-    DungeonHunter my( shang_hai_min, shang_hai_max, gong_ji_su_du, bao_ji_ji_lu, bo_ji_jiang_li );
-
 
     for ( size_t i = 0; i < 15; ++i )
     {
+        DungeonHunter my( shang_hai_min, shang_hai_max, gong_ji_su_du, bao_ji_ji_lu, bo_ji_jiang_li );
+
+        //my.set_bing_shuang_zhi_jian();
+        //my.set_ying_yan();
         my.set_feng_bao( i );
         my.set_min_jie( 15 - i );
 
@@ -162,20 +173,28 @@ double caculate_max_dps()
 #endif
 
 
-
 int _tmain(int argc, _TCHAR* argv[])
 {
-    double shang_hai_min = 72484;
-    double shang_hai_max = 85999;
+#if 0
+    double shang_hai_min = 0;
+    double shang_hai_max = 0;
 
-    //double shang_hai_min = 19209;
-    //double shang_hai_max = 22685;
+    shang_hai_min = 72484;
+    shang_hai_max = 85999; // 17434 / 79241.5 = 0.2200123673350917
+                           //7924
+                           //9826
+                           //1902 1
+                           //3804 2 
 
-    //double shang_hai_min = 288;
-    //double shang_hai_max = 327;
 
-    //double shang_hai_min = 19209;
-    //double shang_hai_max = 22685;
+    //shang_hai_min = 19209;
+    //shang_hai_max = 22685;
+
+    //shang_hai_min = 288;
+    //shang_hai_max = 327; //31.24 / 307.5  = 0.1015934959349593
+
+    //shang_hai_min = 19209;
+    //shang_hai_max = 22685;
 
     double gong_ji_su_du = 0;
     double bao_ji_ji_lu = 0.05;
@@ -186,6 +205,7 @@ int _tmain(int argc, _TCHAR* argv[])
     my.set_min_jie( 10 );
     my.set_feng_bao( 5 );
     my.set_bing_shuang_zhi_jian();
+    my.set_ying_yan();
 
     //double miao_shang = my.miao_shang();
     double miao_shang_with_fu_zhou = my.miao_shang_with_fu_shou();
@@ -194,8 +214,8 @@ int _tmain(int argc, _TCHAR* argv[])
     //std::cout <<  std::setprecision(20) << miao_shang << std::endl;
     std::cout <<  std::setprecision(20) << miao_shang_with_fu_zhou << std::endl;
 
-
-    //std::cout << caculate_max_dps() << std::endl;
+#endif
+    std::cout << caculate_max_dps() << std::endl;
 
 	return 0;
 }
