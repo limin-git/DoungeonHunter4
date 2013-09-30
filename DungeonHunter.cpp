@@ -175,7 +175,6 @@ double caculate_max_dps()
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-#if 0
     double shang_hai_min = 0;
     double shang_hai_max = 0;
 
@@ -202,10 +201,10 @@ int _tmain(int argc, _TCHAR* argv[])
 
     DungeonHunter my( shang_hai_min, shang_hai_max, gong_ji_su_du, bao_ji_ji_lu, bo_ji_jiang_li );
 
-    my.set_min_jie( 10 );
-    my.set_feng_bao( 5 );
-    my.set_bing_shuang_zhi_jian();
-    my.set_ying_yan();
+    my.set_min_jie( 9 );
+    my.set_feng_bao( 6 );
+    //my.set_bing_shuang_zhi_jian();
+    //my.set_ying_yan();
 
     //double miao_shang = my.miao_shang();
     double miao_shang_with_fu_zhou = my.miao_shang_with_fu_shou();
@@ -214,8 +213,9 @@ int _tmain(int argc, _TCHAR* argv[])
     //std::cout <<  std::setprecision(20) << miao_shang << std::endl;
     std::cout <<  std::setprecision(20) << miao_shang_with_fu_zhou << std::endl;
 
-#endif
+#if 0
     std::cout << caculate_max_dps() << std::endl;
+#endif
 
 	return 0;
 }
