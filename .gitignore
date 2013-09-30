@@ -1,0 +1,16 @@
+/.parasoft.dat/
+*.ncb
+*.sln
+*.user
+*.suo
+*.pdb
+*.dep
+*.ilk
+*.obj
+*.htm
+*.pch
+*.idb
+*.manifest
+*.res
+
+git-command.txt
