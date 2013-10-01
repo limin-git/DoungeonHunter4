@@ -1,4 +1,4 @@
-/.parasoft.dat/
+Debug/
 *.ncb
 *.sln
 *.user
@@ -12,5 +12,4 @@
 *.idb
 *.manifest
 *.res
-
-git-command.txt
+*.exe
