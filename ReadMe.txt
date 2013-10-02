@@ -1,20 +1,20 @@
 ========================================================================
-    CONSOLE APPLICATION : DungeonHunter Project Overview
+    CONSOLE APPLICATION : DungeonHunter4Character Project Overview
 ========================================================================
 
-AppWizard has created this DungeonHunter application for you.
+AppWizard has created this DungeonHunter4Character application for you.
 
 This file contains a summary of what you will find in each of the files that
-make up your DungeonHunter application.
+make up your DungeonHunter4Character application.
 
 
-DungeonHunter.vcproj
+DungeonHunter4Character.vcproj
     This is the main project file for VC++ projects generated using an Application Wizard.
     It contains information about the version of Visual C++ that generated the file, and
     information about the platforms, configurations, and project features selected with the
     Application Wizard.
 
-DungeonHunter.cpp
+DungeonHunter4Character.cpp
     This is the main application source file.
 
 /////////////////////////////////////////////////////////////////////////////
@@ -22,7 +22,7 @@ Other standard files:
 
 StdAfx.h, StdAfx.cpp
     These files are used to build a precompiled header (PCH) file
-    named DungeonHunter.pch and a precompiled types file named StdAfx.obj.
+    named DungeonHunter4Character.pch and a precompiled types file named StdAfx.obj.
 
 /////////////////////////////////////////////////////////////////////////////
 Other notes:
