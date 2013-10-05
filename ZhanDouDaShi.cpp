@@ -32,6 +32,40 @@ namespace DungeonHunter4
 
     double ZhanDouDaShi::ge_max_dps()
     {
+        struct ZhanDouDaShiDps
+        {
+            ZhanDouDaShiDps( double dps = 0, 
+                size_t feng_bao = 0,
+                size_t dong_cha = 0,
+                size_t min_jie = 0,
+                const std::string& ring = "" )
+            : m_dps( dps ),
+              m_feng_bao( feng_bao ),
+              m_dong_cha( dong_cha ),
+              m_min_jie( min_jie ),
+              m_ring( ring )
+            {
+            }
+
+            double m_dps;
+            size_t m_feng_bao;
+            size_t m_dong_cha;
+            size_t m_min_jie;
+            std::string m_ring;
+
+            bool operator<( const ZhanDouDaShiDps& rhs ) const
+            {
+                return m_dps > rhs.m_dps;
+            }
+
+            void output( std::ostream& os ) const
+            {
+                os << "·ç±©=" << m_feng_bao << "£¬¶´²ì=" << m_dong_cha << "£¬Ãô½Ý=" << m_min_jie << "£¬" << m_ring << "£¬ÃëÉË=" << std::setprecision(10) << m_dps;
+            }
+        };
+
+        std::set<ZhanDouDaShiDps> dps_list;
+
         double max_dps = 0;
         size_t feng_bao = 0;
         size_t dong_cha = 0;
@@ -40,13 +74,13 @@ namespace DungeonHunter4
 
         // Ê¥½à³¤½£
         const WuQi& wu_qi = Store::instance().get_wu_qi( "Ê¥½à³¤½£" );
-        std::map<std::string, Ring*>& all_ring = Store::instance().get_all_ring();
+        Rings& all_ring = Store::instance().get_all_rings();
 
         for ( size_t i = 0; i <= 15; ++i ) // ·ç±©
         {
             for ( size_t j = 0; j <= 15; ++j ) // ¶´²ì
             {
-                if ( i + j > 15 )
+                if ( 15 < i + j )
                 {
                     continue;
                 }
@@ -58,7 +92,7 @@ namespace DungeonHunter4
                         continue;
                     }
 
-                    for ( std::map<std::string, Ring*>::iterator it = all_ring.begin(); it != all_ring.end(); ++it )
+                    for ( Rings::iterator it = all_ring.begin(); it != all_ring.end(); ++it )
                     {
                         ZhanDouDaShi zhan_dou_da_shi;
 
@@ -66,31 +100,32 @@ namespace DungeonHunter4
                         zhan_dou_da_shi.set_fen_nu();           // ±»¶¯¼¼ÄÜ£º·ßÅ­
                         zhan_dou_da_shi.set_ji_shu_lao_shou();  // ±»¶¯¼¼ÄÜ£º¼¼ÊõÀÏÊÖ
 
-                        zhan_dou_da_shi.set_ring( *(it->second) );
+                        zhan_dou_da_shi.set_ring( *it );
                         zhan_dou_da_shi.set_feng_bao_fu_zhou( i );
                         zhan_dou_da_shi.set_dong_cha_fu_zhou( j );
                         zhan_dou_da_shi.set_min_jie_fu_zhou( k );
 
                         double dps = zhan_dou_da_shi.get_miao_shang();
 
-                        if ( max_dps < dps )
-                        {
-                            max_dps = dps;
-                            feng_bao = i;
-                            dong_cha = j;
-                            min_jie = k;
-                            ring = it->first;
-                        }
+                        dps_list.insert( ZhanDouDaShiDps( dps, i, j, k, it->m_name ) );
                     }
                 }
             }
         }
 
-        std::cout << "·ç±©·ûÖä£º" << feng_bao << std::endl;
-        std::cout << "¶´²ì·ûÖä£º" << dong_cha << std::endl;
-        std::cout << "Ãô½Ý·ûÖä£º" << min_jie << std::endl;
-        std::cout << "½äÖ¸£º    " << ring << std::endl;
-        std::cout << "¼«ÏÞÃëÉË£º" << std::setprecision(20) << max_dps << std::endl;
+        size_t i = 0;
+
+        for ( std::set<ZhanDouDaShiDps>::iterator it = dps_list.begin(); it != dps_list.end() && i < 100; ++it, ++i  )
+        {
+            it->output( std::cout );
+            std::cout << std::endl;
+        }
+
+        //std::cout << "·ç±©·ûÖä£º" << feng_bao << std::endl;
+        //std::cout << "¶´²ì·ûÖä£º" << dong_cha << std::endl;
+        //std::cout << "Ãô½Ý·ûÖä£º" << min_jie << std::endl;
+        //std::cout << "½äÖ¸£º    " << ring << std::endl;
+        //std::cout << "¼«ÏÞÃëÉË£º" << std::setprecision(10) << max_dps << std::endl;
 
         return max_dps;
     }

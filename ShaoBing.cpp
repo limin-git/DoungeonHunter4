@@ -49,10 +49,11 @@ namespace DungeonHunter4
             adjustment -= 0.1 * get_wu_qi_shang_hai() * get_yuan_su_shang_hai_jia_cheng();
 
             // TODO: Ω‰÷∏£∫+¡¶¡ø°¢%…À∫¶
-            //double ring_adjustment = 0;
-            //ring_adjustment -= m_ring.m_ji_chu_li_liang_jia * 0.01;
-            //ring_adjustment -= m_ring.m_ji_chu_li_liang_jia * m_ring.m_yuan_su_shang_hai_jia_cheng;
-            //adjustment += ring_adjustment;
+            double ring_adjustment = 0;
+            ring_adjustment -= 0.1 * m_ring.m_ji_chu_li_liang_jia * ( 1 + m_ring.m_shang_hai_jia_cheng ) * ( 1 + m_ring.m_bao_ji_jiang_li_jia );
+            ring_adjustment -= 0.1 * m_ring.m_ji_chu_li_liang_jia * ( 1 + m_ring.m_shang_hai_jia_cheng ) * m_ring.m_yuan_su_shang_hai_jia_cheng;
+
+            adjustment += ring_adjustment;
         }
 
         return adjustment;
@@ -71,11 +72,11 @@ namespace DungeonHunter4
         std::string ring;
 
         const WuQi& wu_qi = Store::instance().get_wu_qi( " •Ω‡Õ‰π≠" );
-        std::map<std::string, Ring*>& all_ring = Store::instance().get_all_ring();
+        Rings& all_ring = Store::instance().get_all_rings();
 
         for ( size_t i = 0; i <= 15; ++i )
         {
-            for ( std::map<std::string, Ring*>::iterator it = all_ring.begin(); it != all_ring.end(); ++it )
+            for ( Rings::iterator it = all_ring.begin(); it != all_ring.end(); ++it )
             {
                 ShaoBing shao_bing;
 
@@ -83,7 +84,7 @@ namespace DungeonHunter4
                 shao_bing.set_bing_shuang_zhi_jian();   // ±ª∂Øººƒ‹£∫±˘À™÷Æº˝
                 shao_bing.set_ying_yan();               // ±ª∂Øººƒ‹£∫”•—€
 
-                shao_bing.set_ring( *(it->second) );
+                shao_bing.set_ring( *it );
                 shao_bing.set_feng_bao_fu_zhou( i );
                 shao_bing.set_min_jie_fu_zhou( 15 - i );
 
@@ -94,10 +95,10 @@ namespace DungeonHunter4
                     max_dps = dps;
                     feng_bao = i;
                     min_jie = 15 - i;
-                    ring = it->first;
+                    ring = it->m_name;
                 }
 
-                std::cout << "∑Á±©=" << i << "£¨√ÙΩ›=" << 15 - i << "£¨" << it->first << "£¨√Î…À=" << std::setprecision(10) << dps << "" << std::endl;
+                std::cout << "∑Á±©=" << i << "£¨√ÙΩ›=" << 15 - i << "£¨" << it->m_name << "£¨√Î…À=" << std::setprecision(10) << dps << "" << std::endl;
             }
         }
 

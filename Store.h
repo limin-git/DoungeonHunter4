@@ -6,6 +6,7 @@
 #include <map>
 #include <cassert>
 #include <cmath>
+#include <set>
 
 
 namespace DungeonHunter4
@@ -31,12 +32,17 @@ namespace DungeonHunter4
 
     struct Ring
     {
-        Ring( double bao_ji_ji_lu_jia = 0,             // 暴击几率
+        Ring( size_t level = 0,
+              const std::string& name = "",
+              double bao_ji_ji_lu_jia = 0,             // 暴击几率
               double bao_ji_jiang_li_jia = 0,          // 暴击奖励
               double ji_chu_li_liang_jia = 0,          // 基础伤害
               double yuan_su_shang_hai_jia_cheng = 0,  // 元素伤害加成
               double shang_hai_jia_cheng = 0 )         // 伤害加成
         {
+            m_level = level;
+            m_name = name;
+
             m_bao_ji_ji_lu_jia = bao_ji_ji_lu_jia;
             m_bao_ji_jiang_li_jia = bao_ji_jiang_li_jia;
             m_ji_chu_li_liang_jia = ji_chu_li_liang_jia;
@@ -44,12 +50,22 @@ namespace DungeonHunter4
             m_shang_hai_jia_cheng = shang_hai_jia_cheng;
         }
 
+        const bool operator<( const Ring& rhs ) const
+        {
+            return m_level < rhs.m_level;
+        }
+
+        size_t m_level;
+        std::string m_name;
+
         double m_bao_ji_ji_lu_jia;
         double m_bao_ji_jiang_li_jia;
         double m_ji_chu_li_liang_jia;
         double m_yuan_su_shang_hai_jia_cheng;
         double m_shang_hai_jia_cheng;
     };
+
+    typedef std::set<Ring> Rings;
 
 
     class Store
@@ -59,10 +75,10 @@ namespace DungeonHunter4
         static Store& instance();
 
         const WuQi& get_wu_qi( const std::string& wu_qi_name );
-        const Ring& get_ring( const std::string& ring_name );
+        const Ring& get_ring( const std::string& name );
 
         std::map<std::string, WuQi*>& get_all_wu_qi();
-        std::map<std::string, Ring*>& get_all_ring();
+        Rings& get_all_rings();
 
     private:
 
@@ -74,7 +90,7 @@ namespace DungeonHunter4
     private:
 
         std::map<std::string, WuQi*> m_wu_qi_map;
-        std::map<std::string, Ring*> m_ring_map;
+        Rings m_rings;
     };
 
 } // DungeonHunter4
