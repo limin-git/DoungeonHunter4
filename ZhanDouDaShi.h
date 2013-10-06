@@ -22,7 +22,7 @@ namespace DungeonHunter4
         // 被动技能：技术老手
         void set_ji_shu_lao_shou();
 
-        static double ge_max_dps();
+        static double ge_max_dps( size_t output_list_size = 100 );
     };
 
 } // namespace DungeonHunter4

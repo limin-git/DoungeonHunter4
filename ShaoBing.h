@@ -26,7 +26,7 @@ namespace DungeonHunter4
 
         double get_yuan_su_shang_hai_jia_cheng();
 
-        static double ge_max_dps();
+        static double ge_max_dps( size_t output_list_size = 100 );
 
     private:
 

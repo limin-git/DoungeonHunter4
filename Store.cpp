@@ -70,7 +70,7 @@ namespace DungeonHunter4
     {
 #if 0
         Ring;
-        double bao_ji_ji_lu_jia;             // 暴击几率
+        double bao_ji_ji_lv_jia;             // 暴击几率
         double bao_ji_jiang_li_jia;          // 暴击奖励
         double ji_chu_shang_hai_jia;         // 基础伤害
         double yuan_su_shang_hai_jia_cheng;  // 元素伤害加成

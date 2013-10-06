@@ -201,6 +201,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\DpsConfiguration.h"
+				>
+			</File>
+			<File
 				RelativePath=".\ShaoBing.h"
 				>
 			</File>
