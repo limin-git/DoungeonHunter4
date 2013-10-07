@@ -31,7 +31,7 @@ int _tmain(int argc, _TCHAR* argv[])
         shao_bing.set_bing_shuang_zhi_jian();   // 被动技能：冰霜之箭
 
         //std::cout <<  std::setprecision(20) << shao_bing.get_miao_shang() << std::endl;
-        ShaoBing::ge_max_dps();
+        //ShaoBing::ge_max_dps();
     }
 #endif
 
@@ -54,7 +54,7 @@ int _tmain(int argc, _TCHAR* argv[])
         zhan_dou_da_shi.set_ji_shu_lao_shou();        // 被动技能：技术老手
 
         //std::cout <<  std::setprecision(20) << zhan_dou_da_shi.get_miao_shang() << std::endl;
-        //ZhanDouDaShi::ge_max_dps();
+        ZhanDouDaShi::ge_max_dps();
     }
 #endif
 

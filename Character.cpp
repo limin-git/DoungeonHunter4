@@ -64,11 +64,13 @@ namespace DungeonHunter4
         m_dong_cha_fu_zhou = dong_cha_fu_zhou;
     }
 
+
     // É®ÂÂ·ûÖä
     void Character::set_seng_lv_fu_zhou( size_t seng_lv_fu_zhou )
     {
         m_seng_lv_fu_zhou = seng_lv_fu_zhou;
     }
+
 
     void Character::set_ring( const Ring& ring )
     {
@@ -82,6 +84,7 @@ namespace DungeonHunter4
     }
 
 
+    // ÃëÉË¹«Ê½
     double Character::get_miao_shang()
     {
         // »ù´¡ÉËº¦
