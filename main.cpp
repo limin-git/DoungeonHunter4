@@ -20,23 +20,23 @@ int _tmain(int argc, _TCHAR* argv[])
         ShaoBing shao_bing;
 
         const WuQi& wu_qi = Store::instance().get_wu_qi( "圣洁弯弓" );      // 圣洁弯弓 神圣长弓 食人魔长弓 毒域长弓 
-        const Ring& ring = Store::instance().get_ring( "极地指环" );  // 蛇心指环 灰烬之戒 陨石指环 无名戒 莫比乌斯环 不朽之戒 精神之戒 公爵徽记之戒 极地指环 皇族之戒 死亡象征 污迹指环 圣力之戒 女巫之戒
+        const Ring& ring = Store::instance().get_ring( "精神之戒" );  // 蛇心指环 灰烬之戒 陨石指环 无名戒 莫比乌斯环 不朽之戒 精神之戒 公爵徽记之戒 极地指环 皇族之戒 死亡象征 污迹指环 圣力之戒 女巫之戒
 
         shao_bing.set_wu_qi( wu_qi );           // 武器
         shao_bing.set_ring( ring );             // 戒指
-        shao_bing.set_feng_bao_fu_zhou( 4 );    // 风暴符咒
-        shao_bing.set_min_jie_fu_zhou( 10 );     // 敏捷符咒
-        shao_bing.set_seng_lv_fu_zhou( 1 );     // 僧侣符咒
-        //shao_bing.set_ying_yan();               // 被动技能：鹰眼
+        shao_bing.set_feng_bao_fu_zhou( 3 );    // 风暴符咒
+        shao_bing.set_min_jie_fu_zhou( 9 );     // 敏捷符咒
+        //shao_bing.set_seng_lv_fu_zhou( 1 );     // 僧侣符咒
+        shao_bing.set_ying_yan();               // 被动技能：鹰眼
         shao_bing.set_bing_shuang_zhi_jian();   // 被动技能：冰霜之箭
 
         //std::cout <<  std::setprecision(20) << shao_bing.get_miao_shang() << std::endl;
-        //ShaoBing::ge_max_dps();
+        ShaoBing::ge_max_dps();
     }
 #endif
 
 
-#if 1
+#if 0
     {
         // 战斗大师
 

@@ -11,6 +11,7 @@ namespace DungeonHunter4
         init();
     }
 
+
     void ShaoBing::init()
     {
         Character::init();
@@ -19,11 +20,13 @@ namespace DungeonHunter4
         m_is_set_ying_yan = false;
     }
 
+
     // 被动技能：冰霜之箭
     void ShaoBing::set_bing_shuang_zhi_jian()
     {
         m_yuan_su_shang_hai_jia_cheng += 0.4;
     }
+
 
     // 被动技能：鹰眼
     void ShaoBing::set_ying_yan()
@@ -40,6 +43,7 @@ namespace DungeonHunter4
         m_bao_ji_jiang_li_jia += 0.3;
     }
 
+
     double ShaoBing::get_adjustment()
     {
         double adjustment = 0;
@@ -48,21 +52,17 @@ namespace DungeonHunter4
         {
             adjustment -= 0.1 * get_wu_qi_shang_hai();
             adjustment -= 0.1 * get_wu_qi_shang_hai() * get_yuan_su_shang_hai_jia_cheng();
-
-            // TODO: 戒指：+力量、%伤害
-            //double ring_adjustment = 0;
-            //ring_adjustment -= 0.1 * m_ring.m_ji_chu_li_liang_jia * ( 1 + m_ring.m_shang_hai_jia_cheng ) * ( 1 + m_ring.m_bao_ji_jiang_li_jia );
-            //ring_adjustment -= 0.1 * m_ring.m_ji_chu_li_liang_jia * ( 1 + m_ring.m_shang_hai_jia_cheng ) * m_ring.m_yuan_su_shang_hai_jia_cheng;
-            //adjustment += ring_adjustment;
         }
 
         return adjustment;
     }
 
+
     double ShaoBing::get_yuan_su_shang_hai_jia_cheng()
     {
         return m_feng_bao_fu_zhou * 0.24 + m_yuan_su_shang_hai_jia_cheng;
     }
+
 
     double ShaoBing::ge_max_dps( size_t output_list_size )
     {
@@ -93,7 +93,7 @@ namespace DungeonHunter4
 
                         shao_bing.set_wu_qi( wu_qi );
                         shao_bing.set_bing_shuang_zhi_jian();   // 被动技能：冰霜之箭
-                        //shao_bing.set_ying_yan();               // 被动技能：鹰眼
+                        shao_bing.set_ying_yan();               // 被动技能：鹰眼
 
                         shao_bing.set_feng_bao_fu_zhou( i );
                         shao_bing.set_min_jie_fu_zhou( j );

@@ -11,6 +11,7 @@ namespace DungeonHunter4
         init();
     }
 
+
     void ZhanDouDaShi::init()
     {
         Character::init();
@@ -18,11 +19,13 @@ namespace DungeonHunter4
         m_gong_ji_su_du = 1.579707703543008;
     }
 
+
     // 被动技能：愤怒
     void ZhanDouDaShi::set_fen_nu()
     {
         m_shang_hai_jia_cheng += 0.4;
     }
+
 
     // 被动技能：技术老手
     void ZhanDouDaShi::set_ji_shu_lao_shou()
@@ -30,6 +33,7 @@ namespace DungeonHunter4
         m_bao_ji_ji_lv_jia += 0.3;
         m_bao_ji_jiang_li_jia += 1;
     }
+
 
     double ZhanDouDaShi::ge_max_dps( size_t output_list_size )
     {
