@@ -22,7 +22,8 @@ namespace DungeonHunter4
         // 被动技能：鹰眼
         void set_ying_yan();
 
-        double get_adjustment();
+        // 主动技能：疾行
+        void set_ji_xing();
 
         double get_yuan_su_shang_hai_jia_cheng();
 

@@ -72,6 +72,7 @@ namespace DungeonHunter4
     }
 
 
+    // 戒指
     void Character::set_ring( const Ring& ring )
     {
         m_ji_chu_li_liang_jia           += ring.m_ji_chu_li_liang_jia;
@@ -84,8 +85,30 @@ namespace DungeonHunter4
     }
 
 
+    // 神恩天赐
+    void Character::set_shen_en_tian_ci()
+    {
+        m_shang_hai_jia_cheng += 1.2;
+        m_bao_ji_ji_lv_jia += 0.96;
+        m_bao_ji_jiang_li_jia += 0.48;
+    }
+
+    // 疾速药剂
+    void Character::set_ji_su_yao_ji()
+    {
+        m_gong_ji_su_du_jia_cheng += 1;
+    }
+
+
+    // 士兵伤害
+    void Character::set_shi_bing_shang_hai()
+    {
+        m_shang_hai_jia_cheng += 2.2;
+    }
+
+
     // 秒伤公式
-    double Character::get_miao_shang()
+    double Character::get_miao_shang( double adjust )
     {
         // 暴击几率
         m_bao_ji_ji_lv += m_bao_ji_ji_lv_jia;
@@ -110,22 +133,13 @@ namespace DungeonHunter4
         double bao_ji_shang_hai = m_shang_hai * ( 1 + m_bao_ji_jiang_li ) * m_bao_ji_ji_lv;
 
         // 普通伤害
-        double pu_tong_shang_hai = 0;
-
-        if ( m_bao_ji_ji_lv < 1 )
-        {
-            pu_tong_shang_hai = m_shang_hai * ( 1 - m_bao_ji_ji_lv );
-        }
+        double pu_tong_shang_hai = m_shang_hai * ( 1 - m_bao_ji_ji_lv );
 
         // 平均伤害
         double ping_jun_shang_hai = bao_ji_shang_hai + pu_tong_shang_hai;
 
         // 秒伤
         m_miao_shang = ping_jun_shang_hai * m_gong_ji_su_du;
-
-        // 微调
-        m_miao_shang += get_adjustment();
-
         m_miao_shang *= ( 1 + m_shang_hai_jia_cheng ); // +%伤害
 
         return m_miao_shang;

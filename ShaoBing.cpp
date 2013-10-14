@@ -39,22 +39,15 @@ namespace DungeonHunter4
 
         m_is_set_ying_yan = true;
 
-        m_bao_ji_ji_lv_jia += 1.0;
+        m_bao_ji_ji_lv_jia += 1;
         m_bao_ji_jiang_li_jia += 0.3;
     }
 
 
-    double ShaoBing::get_adjustment()
+    // 主动技能：疾行
+    void ShaoBing::set_ji_xing()
     {
-        double adjustment = 0;
-
-        if ( true == m_is_set_ying_yan )
-        {
-            adjustment -= 0.1 * get_wu_qi_shang_hai();
-            adjustment -= 0.1 * get_wu_qi_shang_hai() * get_yuan_su_shang_hai_jia_cheng();
-        }
-
-        return adjustment;
+        m_gong_ji_su_du_jia_cheng += 0.5;
     }
 
 
@@ -92,8 +85,12 @@ namespace DungeonHunter4
                         ShaoBing shao_bing;
 
                         shao_bing.set_wu_qi( wu_qi );
+                        shao_bing.set_ji_xing();                // 主动技能：疾行
                         shao_bing.set_bing_shuang_zhi_jian();   // 被动技能：冰霜之箭
                         shao_bing.set_ying_yan();               // 被动技能：鹰眼
+                        shao_bing.set_shen_en_tian_ci();        // 被动技能：神恩天赐
+                        shao_bing.set_ji_su_yao_ji();           // 药剂：疾速药剂
+                        shao_bing.set_shi_bing_shang_hai();     // 药剂：士兵伤害
 
                         shao_bing.set_feng_bao_fu_zhou( i );
                         shao_bing.set_min_jie_fu_zhou( j );
