@@ -85,7 +85,7 @@ namespace DungeonHunter4
     }
 
 
-    // Éñ¶÷Ìì´Í
+    // ¾«Éñ·¨Êõ£ºÉñ¶÷Ìì´Í
     void Character::set_shen_en_tian_ci()
     {
         m_shang_hai_jia_cheng += 1.2;
@@ -93,30 +93,31 @@ namespace DungeonHunter4
         m_bao_ji_jiang_li_jia += 0.48;
     }
 
-    // ¼²ËÙÒ©¼Á
+
+    // Ò©¼Á£º¼²ËÙÒ©¼Á
     void Character::set_ji_su_yao_ji()
     {
-        m_gong_ji_su_du_jia_cheng += 1;
+        m_gong_ji_su_du_jia_cheng += 0.5;   // Õ½¶·´óÊ¦
     }
 
 
-    // Ê¿±øÉËº¦
+    // Ò©¼Á£ºÊ¿±øÉËº¦
     void Character::set_shi_bing_shang_hai()
     {
-        m_shang_hai_jia_cheng += 2.2;
+        m_shang_hai_jia_cheng += 1;
     }
 
 
     // ÃëÉË¹«Ê½
-    double Character::get_miao_shang( double adjust )
+    double Character::get_miao_shang()
     {
         // ±©»÷¼¸ÂÊ
         m_bao_ji_ji_lv += m_bao_ji_ji_lv_jia;
-        m_bao_ji_ji_lv += m_dong_cha_fu_zhou * 0.1; // ¶´²ì·ûÖä
+        m_bao_ji_ji_lv += m_dong_cha_fu_zhou * 0.10; // ¶´²ì·ûÖä
 
         // ±©»÷ÉËº¦½±Àø
         m_bao_ji_jiang_li += m_bao_ji_jiang_li_jia;
-        m_bao_ji_jiang_li += m_min_jie_fu_zhou * 1.0; // Ãô½İ·ûÖä
+        m_bao_ji_jiang_li += m_min_jie_fu_zhou * 1.00; // Ãô½İ·ûÖä
 
         // ¹¥»÷ËÙ¶È
         m_gong_ji_su_du *= ( 1 + m_gong_ji_su_du_jia_cheng + m_seng_lv_fu_zhou * 0.17 ); // É®ÂÂ·ûÖä
@@ -125,7 +126,7 @@ namespace DungeonHunter4
         double ji_chu_shang_hai = get_wu_qi_shang_hai() + m_ji_chu_li_liang_jia; // +»ù´¡Á¦Á¿
 
         // ÉËº¦
-        m_shang_hai = ji_chu_shang_hai;
+        m_shang_hai += ji_chu_shang_hai;
         m_shang_hai += ji_chu_shang_hai * m_feng_bao_fu_zhou * 0.24;     // ·ç±©·ûÖä
         m_shang_hai += ji_chu_shang_hai * m_yuan_su_shang_hai_jia_cheng; // +%ÔªËØÉËº¦
 

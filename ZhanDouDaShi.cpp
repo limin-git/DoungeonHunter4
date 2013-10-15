@@ -35,6 +35,20 @@ namespace DungeonHunter4
     }
 
 
+    // 药剂：疾速药剂
+    void ZhanDouDaShi::set_ji_su_yao_ji()
+    {
+        m_gong_ji_su_du_jia_cheng += 0.5;
+    }
+
+
+    // 药剂：士兵伤害
+    void ZhanDouDaShi::set_shi_bing_shang_hai()
+    {
+        m_shang_hai_jia_cheng += 1.4;
+    }
+
+
     double ZhanDouDaShi::ge_max_dps( size_t output_list_size )
     {
         DpsList dps_list;
@@ -71,8 +85,10 @@ namespace DungeonHunter4
                             ZhanDouDaShi zhan_dou_da_shi;
 
                             zhan_dou_da_shi.set_wu_qi( wu_qi );
-                            zhan_dou_da_shi.set_fen_nu();           // 被动技能：愤怒
-                            zhan_dou_da_shi.set_ji_shu_lao_shou();  // 被动技能：技术老手
+                            zhan_dou_da_shi.set_fen_nu();                   // 被动技能：愤怒
+                            zhan_dou_da_shi.set_ji_shu_lao_shou();          // 被动技能：技术老手
+                            zhan_dou_da_shi.set_ji_su_yao_ji();             // 药剂：疾速药剂
+                            zhan_dou_da_shi.set_shi_bing_shang_hai();       // 药剂：士兵伤害
 
                             zhan_dou_da_shi.set_ring( *it );
                             zhan_dou_da_shi.set_feng_bao_fu_zhou( i );

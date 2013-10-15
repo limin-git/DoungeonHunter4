@@ -57,7 +57,7 @@ namespace DungeonHunter4
                 os << "£¬";
             }
 
-            os << "ÃëÉË=" << std::setprecision(10) << m_dps;
+            os << "ÃëÉË=" << std::fixed << std::setprecision(2) << m_dps;
         }
 
     public:

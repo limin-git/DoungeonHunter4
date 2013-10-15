@@ -11,7 +11,7 @@
 
 namespace DungeonHunter4
 {
-    
+
     struct WuQi
     {
         WuQi( double shang_hai_min = 0, double shang_hai_max = 0 )

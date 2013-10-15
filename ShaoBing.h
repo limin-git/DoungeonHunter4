@@ -16,18 +16,22 @@ namespace DungeonHunter4
 
         void init();
 
+        // 主动技能：疾行
+        void set_ji_xing();
+
         // 被动技能：冰霜之箭
         void set_bing_shuang_zhi_jian();
 
         // 被动技能：鹰眼
         void set_ying_yan();
 
-        // 主动技能：疾行
-        void set_ji_xing();
+        // 药剂：疾速药剂
+        virtual void set_ji_su_yao_ji();
 
-        double get_yuan_su_shang_hai_jia_cheng();
+        // 药剂：士兵伤害
+        virtual void set_shi_bing_shang_hai();
 
-        static double ge_max_dps( size_t output_list_size = 100 );
+        static double ge_max_dps( size_t output_list_size = 10 );
 
     private:
 

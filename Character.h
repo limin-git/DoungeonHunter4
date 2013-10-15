@@ -34,16 +34,16 @@ namespace DungeonHunter4
         void set_ring( const Ring& ring );
 
         // 秒伤公式
-        double get_miao_shang( double adjust = 0  );
+        double get_miao_shang();
 
-        // 神恩天赐
+        // 精神法术：神恩天赐
         void set_shen_en_tian_ci();
 
-        // 疾速药剂
-        void set_ji_su_yao_ji();
+        // 药剂：疾速药剂
+        virtual void set_ji_su_yao_ji();
 
-        // 士兵伤害
-        void set_shi_bing_shang_hai();
+        // 药剂：士兵伤害
+        virtual void set_shi_bing_shang_hai();
 
     public:
 
