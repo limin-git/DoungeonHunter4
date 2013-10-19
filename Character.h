@@ -2,6 +2,7 @@
 #define CHARACTER_H_INCLUDED
 
 #include "Store.h"
+#include "DpsConfiguration.h"
 
 
 namespace DungeonHunter4
@@ -33,9 +34,6 @@ namespace DungeonHunter4
         // 戒指
         void set_ring( const Ring& ring );
 
-        // 秒伤公式
-        double get_miao_shang();
-
         // 精神法术：神恩天赐
         void set_shen_en_tian_ci();
 
@@ -45,7 +43,13 @@ namespace DungeonHunter4
         // 药剂：士兵伤害
         virtual void set_shi_bing_shang_hai();
 
-    public:
+        // 秒伤公式
+        double get_miao_shang();
+
+        // 秒伤列表
+        static void get_dps_list( const Character& character_, DpsList& dps_list );
+
+    private:
 
         double get_wu_qi_shang_hai();
 

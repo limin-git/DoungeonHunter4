@@ -50,7 +50,7 @@ namespace DungeonHunter4
             m_shang_hai_jia_cheng = shang_hai_jia_cheng;
         }
 
-        const bool operator<( const Ring& rhs ) const
+        const bool operator < ( const Ring& rhs ) const
         {
             return m_level < rhs.m_level;
         }
@@ -74,23 +74,23 @@ namespace DungeonHunter4
 
         static Store& instance();
 
-        const WuQi& get_wu_qi( const std::string& wu_qi_name );
         const Ring& get_ring( const std::string& name );
+        const WuQi& get_wu_qi( const std::string& wu_qi_name );
 
-        std::map<std::string, WuQi*>& get_all_wu_qi();
         Rings& get_all_rings();
+        std::map<std::string, WuQi*>& get_all_wu_qi();
 
     private:
 
         Store();
 
-        void build_wu_qi();
         void build_ring();
+        void build_wu_qi();
 
     private:
 
-        std::map<std::string, WuQi*> m_wu_qi_map;
         Rings m_rings;
+        std::map<std::string, WuQi*> m_wu_qi_map;
     };
 
 } // DungeonHunter4

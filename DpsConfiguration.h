@@ -36,7 +36,7 @@ namespace DungeonHunter4
             m_configuration.push_back( std::make_pair( ring, -1 ) );
         }
 
-        bool operator<( const DpsConfiguration& rhs ) const
+        bool operator < ( const DpsConfiguration& rhs ) const
         {
             return m_dps > rhs.m_dps;
         }
