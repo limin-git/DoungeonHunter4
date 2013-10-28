@@ -66,7 +66,6 @@ void test_zhan_dou_da_shi()
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-
     test_shao_bing();
     test_zhan_dou_da_shi();
 

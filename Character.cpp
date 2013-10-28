@@ -2,6 +2,13 @@
 #include "Character.h"
 
 
+namespace
+{
+    const double SENG_LV_L05 = 0.17; // 僧侣（05级）
+    const double SENG_LV_L10 = 0.32; // 僧侣（10级）
+}
+
+
 namespace DungeonHunter4
 {
 
@@ -130,7 +137,7 @@ namespace DungeonHunter4
 
         // 攻击速度
         double gong_ji_su_du = m_gong_ji_su_du;
-        gong_ji_su_du *= ( 1 + m_gong_ji_su_du_jia_cheng + m_seng_lv_fu_zhou * 0.17 ); // 僧侣符咒（5级）
+        gong_ji_su_du *= ( 1 + m_gong_ji_su_du_jia_cheng + m_seng_lv_fu_zhou * SENG_LV_L10 ); // 僧侣符咒（10级）
 
         // 基础伤害
         double ji_chu_shang_hai = get_wu_qi_shang_hai() + m_ji_chu_li_liang_jia; // +基础力量
@@ -158,6 +165,7 @@ namespace DungeonHunter4
     }
 
 
+    // 武器伤害
     double Character::get_wu_qi_shang_hai()
     {
         return m_wu_qi.get_shang_hai();
