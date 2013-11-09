@@ -4,8 +4,10 @@
 
 namespace
 {
-    const double SENG_LV_L05 = 0.17; // É®ÂÂ£¨05¼¶£©
-    const double SENG_LV_L10 = 0.32; // É®ÂÂ£¨10¼¶£©
+    const size_t MAX_FUZHOU_NUM = 15;           // ·ûÖä¸öÊý
+    const double SENG_LV_L05 = 0.17;            // É®ÂÂ£¨05¼¶£©
+    const double SENG_LV_L10 = 0.32;            // É®ÂÂ£¨10¼¶£©
+    const double& SENG_LV_LEVEL = SENG_LV_L05;  // µ±Ç°É®ÂÂµÈ¼¶
 }
 
 
@@ -137,7 +139,7 @@ namespace DungeonHunter4
 
         // ¹¥»÷ËÙ¶È
         double gong_ji_su_du = m_gong_ji_su_du;
-        gong_ji_su_du *= ( 1 + m_gong_ji_su_du_jia_cheng + m_seng_lv_fu_zhou * SENG_LV_L10 ); // É®ÂÂ·ûÖä£¨10¼¶£©
+        gong_ji_su_du *= ( 1 + m_gong_ji_su_du_jia_cheng + m_seng_lv_fu_zhou * SENG_LV_LEVEL ); // É®ÂÂ·ûÖä
 
         // »ù´¡ÉËº¦
         double ji_chu_shang_hai = get_wu_qi_shang_hai() + m_ji_chu_li_liang_jia; // +»ù´¡Á¦Á¿
@@ -180,25 +182,25 @@ namespace DungeonHunter4
 
         dps_list.clear();
 
-        for ( size_t i = 0; i <= 15; ++i ) // ·ç±©·ûÖä
+        for ( size_t i = 0; i <= MAX_FUZHOU_NUM; ++i ) // ·ç±©·ûÖä
         {
-            for ( size_t j = 0; j <= 15; ++j ) // ¶´²ì·ûÖä
+            for ( size_t j = 0; j <= MAX_FUZHOU_NUM; ++j ) // ¶´²ì·ûÖä
             {
-                if ( 15 < i + j )
+                if ( MAX_FUZHOU_NUM < i + j )
                 {
                     continue;
                 }
 
-                for ( size_t k = 0; k <= 15; ++k ) // Ãô½Ý·ûÖä
+                for ( size_t k = 0; k <= MAX_FUZHOU_NUM; ++k ) // Ãô½Ý·ûÖä
                 {
-                    if ( 15 < i + j + k )
+                    if ( MAX_FUZHOU_NUM < i + j + k )
                     {
                         continue;
                     }
 
-                    for ( size_t m = 0; m <= 15; ++m ) // É®ÂÂ·ûÖä
+                    for ( size_t m = 0; m <= MAX_FUZHOU_NUM; ++m ) // É®ÂÂ·ûÖä
                     {
-                        if ( i + j + k + m != 15 )
+                        if ( i + j + k + m != MAX_FUZHOU_NUM )
                         {
                             continue;
                         }
